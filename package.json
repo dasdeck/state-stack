@@ -1,0 +1,29 @@
+{
+  "name": "state-stack",
+  "version": "0.0.1",
+  "description": "simple state stack for time travel operations",
+  "main": "dist/state-stack.js",
+  "scripts": {
+    "test": "babel-node test/run.jasmine.js && babel-node test/run.karma.js",
+    "karma": "babel-node test/run.karma.js -w",
+    "build": "webpack"
+  },
+  "author": "Jan \"JM\" Manuel Schlieper",
+  "license": "MIT",
+  "devDependencies": {
+    "babel-loader": "^7.1.2",
+    "babel-preset-env": "^1.6.0",
+    "jasmine": "^2.8.0",
+    "karma": "^1.7.1",
+    "karma-chrome-launcher": "^2.2.0",
+    "karma-jasmine": "^1.1.0",
+    "karma-sourcemap-loader": "^0.3.7",
+    "karma-webpack": "^2.0.4",
+    "webpack": "^3.6.0",
+    "webpack-node-externals": "^1.6.0"
+  },
+  "dependencies": {
+    "events": "^1.1.1",
+    "lodash": "^4.17.4"
+  }
+}
