@@ -1,5 +1,6 @@
 
-https://circleci.com/gh/:dasdeck/:state-stack/tree/:develop.png?circle-token=:b9eb523df1ac2cba1124e96452aab43a4686d6ac
+![circleci-status](https://circleci.com/gh/:dasdeck/:state-stack/tree/:develop.png?circle-token=:b9eb523df1ac2cba1124e96452aab43a4686d6ac
+)
 
 #simple and fast undo/redo function for your web applications
 
