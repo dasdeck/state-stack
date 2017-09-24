@@ -11,6 +11,7 @@
   "author": "Jan \"JM\" Manuel Schlieper",
   "license": "MIT",
   "devDependencies": {
+    "babel-cli": "^6.26.0",
     "babel-loader": "^7.1.2",
     "babel-preset-env": "^1.6.0",
     "jasmine": "^2.8.0",
