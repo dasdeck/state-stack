@@ -96,50 +96,103 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var _class = function (_EventEmitter) {
-    _inherits(_class, _EventEmitter);
+/**
+ * state based undo/redo class
+ * @class
+ *
+ */
+var StateStack = function (_EventEmitter) {
+    _inherits(StateStack, _EventEmitter);
 
-    function _class() {
-        _classCallCheck(this, _class);
+    /**
+     *
+     * @param {object} [state] - optionally pass the state to manage on construction
+     */
+    function StateStack(state) {
+        _classCallCheck(this, StateStack);
 
-        var _this = _possibleConstructorReturn(this, (_class.__proto__ || Object.getPrototypeOf(_class)).call(this));
+        var _this = _possibleConstructorReturn(this, (StateStack.__proto__ || Object.getPrototypeOf(StateStack)).call(this));
 
-        _this.state = {};
+        _this.state = state || {};
         _this.stack = null;
         return _this;
     }
 
-    _createClass(_class, [{
+    /**
+     * @private
+     * @returns {boolean}
+     */
+
+
+    _createClass(StateStack, [{
         key: '_hasPrevious',
         value: function _hasPrevious() {
             return !!(this.stack && this.stack.prev);
         }
+
+        /**
+         *
+         * @returns {boolean}
+         * @private
+         */
+
     }, {
         key: '_isDirty',
         value: function _isDirty() {
             return !!(this.stack && !(0, _lodash.isEqual)(this.stack.state, this.getState()));
         }
+
+        /**
+         *
+         * @returns {boolean}
+         * @private
+         */
+
     }, {
         key: '_hasNext',
         value: function _hasNext() {
             return !!(this.stack && this.stack.next);
         }
+
+        /**
+         * gets the current managed state
+         * @returns {object}
+         */
+
     }, {
         key: 'getState',
         value: function getState() {
             return this.state;
         }
+
+        /**
+         *
+         * @param state
+         */
+
     }, {
         key: 'setState',
         value: function setState(state) {
             this.state = state;
             this.emit('changed');
         }
+
+        /**
+         *
+         * @returns {boolean}
+         */
+
     }, {
         key: 'canRedo',
         value: function canRedo() {
             return !!(this.stack && this.stack.next && !this._isDirty());
         }
+
+        /**
+         *
+         * @returns {boolean}
+         */
+
     }, {
         key: 'canUndo',
         value: function canUndo() {
@@ -204,10 +257,10 @@ var _class = function (_EventEmitter) {
         }
     }]);
 
-    return _class;
+    return StateStack;
 }(_events.EventEmitter);
 
-exports.default = _class;
+exports.default = StateStack;
 
 /***/ }),
 /* 1 */

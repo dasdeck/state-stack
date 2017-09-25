@@ -1,43 +1,77 @@
 import {EventEmitter} from 'events';
 import {cloneDeep, isEqual} from 'lodash';
 
-export default class extends EventEmitter {
+/**
+ * state based undo/redo class
+ * @class
+ *
+ */
+class StateStack extends EventEmitter {
 
-    constructor()
+    /**
+     *
+     * @param {object} [state] - optionally pass the state to manage on construction
+     */
+    constructor(state)
     {
         super();
-        this.state = {};
+        this.state = state || {};
         this.stack = null;
     }
 
-
+    /**
+     * @private
+     * @returns {boolean}
+     */
     _hasPrevious()
     {
         return !!( this.stack && this.stack.prev);
     }
 
+    /**
+     *
+     * @returns {boolean}
+     * @private
+     */
     _isDirty()
     {
         return !!( this.stack && !isEqual(this.stack.state, this.getState()) );
     }
 
+    /**
+     *
+     * @returns {boolean}
+     * @private
+     */
     _hasNext()
     {
         return !!(this.stack && this.stack.next)
     }
 
 
+    /**
+     * gets the current managed state
+     * @returns {object}
+     */
     getState()
     {
         return this.state;
     }
 
+    /**
+     *
+     * @param state
+     */
     setState(state)
     {
         this.state = state;
         this.emit('changed');
     }
 
+    /**
+     *
+     * @returns {boolean}
+     */
     canRedo()
     {
         return !!(this.stack && this.stack.next && !this._isDirty() );
@@ -45,6 +79,10 @@ export default class extends EventEmitter {
     }
 
 
+    /**
+     *
+     * @returns {boolean}
+     */
     canUndo()
     {
         return !!(this._isDirty() || this._hasPrevious());
@@ -74,7 +112,7 @@ export default class extends EventEmitter {
 
     undo()
     {
-        if (!this._isDirty() && this._hasPrevious() )
+        if (!this._isDirty() && this._hasPrevious())
         {
             this.stack = this.stack.prev;
         }
@@ -121,3 +159,5 @@ export default class extends EventEmitter {
 
     }
 }
+
+export default StateStack;

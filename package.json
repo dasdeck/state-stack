@@ -6,7 +6,8 @@
   "scripts": {
     "test": "babel-node test/run.jasmine.js && babel-node test/run.karma.js",
     "karma": "babel-node test/run.karma.js -w",
-    "build": "webpack"
+    "build": "webpack",
+    "doc":"jsdoc  src/state-stack.js --destination doc"
   },
   "author": "Jan \"JM\" Manuel Schlieper",
   "license": "MIT",
@@ -15,6 +16,7 @@
     "babel-loader": "^7.1.2",
     "babel-preset-env": "^1.6.0",
     "jasmine": "^2.8.0",
+    "jsdoc": "^3.5.5",
     "karma": "^1.7.1",
     "karma-chrome-launcher": "^2.2.0",
     "karma-jasmine": "^1.1.0",

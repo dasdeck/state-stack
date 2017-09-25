@@ -82,6 +82,25 @@ describe('state-stack advanced', () =>
 
     })
 
+    it('undo do and undo again',function ()
+    {
+        this.stateStack.startTransaction('some action');
+
+        this.state.value = 1;
+
+        this.stateStack.undo();
+
+        this.state.value = 1;
+
+        expect(this.stateStack.canRedo()).toBe(false);
+
+        expect(this.stateStack.getUndoText()).toBe('some action');
+
+        this.stateStack.undo();
+
+        expect(this.state.value).toBe('initial');
+    })
+    
     it('undo', function()
     {
 
