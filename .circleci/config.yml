@@ -18,6 +18,12 @@ jobs:
       - run:
           name: npm test
           command: npm test
+      - run:
+          name: npm run build
+          command: npm run build
+      -run:
+          name: npm run doc
+          command: npm run doc
       - store_artifacts:
           path: doc
           destination: doc
