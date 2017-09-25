@@ -42,6 +42,7 @@ history.undo();
 
 #API
 
-[https://hook.io/dasdeck/getmanual/state-stack](JSDoc)
+[documentation](https://hook.io/dasdeck/getmanual/state-stack)
+[(JSDoc)](https://jsdoc.org)
 
 
