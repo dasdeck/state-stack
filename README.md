@@ -42,4 +42,6 @@ history.undo();
 
 #API
 
-setState(obj)
+[https://hook.io/dasdeck/getmanual/state-stack](JSDoc)
+
+
