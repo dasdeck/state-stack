@@ -88,6 +88,10 @@ class StateStack extends EventEmitter {
         return !!(this._isDirty() || this._hasPrevious());
     }
 
+    /**
+     * returns text of redoable action
+     * @returns {string}
+     */
     getRedoText()
     {
         if (this._hasNext())
@@ -97,6 +101,10 @@ class StateStack extends EventEmitter {
 
     }
 
+    /**
+     * returns text of undoable action
+     * @returns {string}
+     */
     getUndoText()
     {
         if (this._isDirty())
@@ -110,6 +118,9 @@ class StateStack extends EventEmitter {
 
     }
 
+    /**
+     * undo the current transaction
+     */
     undo()
     {
         if (!this._isDirty() && this._hasPrevious())
@@ -126,20 +137,35 @@ class StateStack extends EventEmitter {
         this.setState(cloneDeep(this.stack.state));
     }
 
+    /**
+     * redo last undone transaction
+     * is not save to call if canUdno returns false
+     */
     redo()
     {
         this.stack = this.stack.next;
         this.setState(cloneDeep(this.stack.state));
     }
 
-    startTransaction(name)
+    /**
+     *
+     * @param {string} [name] - string to show in history / idetify change
+     * @param {mixed} [group] - optional group to merge
+     * consecutive chagnes to one transaction
+     */
+    startTransaction(name, group)
     {
         let nextTransaction;
-        if (this.stack && !this._isDirty())
+
+        if (this.stack)
         {
-            nextTransaction = this.stack;
+            if(group && this.stack.group === group || !this._isDirty())
+            {
+                nextTransaction = this.stack;
+            }
         }
-        else
+
+        if(!nextTransaction)
         {
             nextTransaction = {
                 prev: this.stack
@@ -151,11 +177,11 @@ class StateStack extends EventEmitter {
             }
 
             this.stack = nextTransaction;
+            nextTransaction.state = cloneDeep(this.getState());
         }
 
-        nextTransaction.state = cloneDeep(this.getState());
         nextTransaction.name = name;
-
+        nextTransaction.group = group;
 
     }
 }

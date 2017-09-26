@@ -42,7 +42,7 @@ describe('state-stack simple tests', () =>
 describe('state-stack advanced', () =>
 {
 
-    beforeEach(function()
+    beforeEach(function ()
     {
 
         this.state = {value: 'initial'};
@@ -56,7 +56,7 @@ describe('state-stack advanced', () =>
 
     })
 
-    it('undo x2', function()
+    it('undo x2', function ()
     {
 
         this.stateStack.startTransaction('first change');
@@ -82,7 +82,7 @@ describe('state-stack advanced', () =>
 
     })
 
-    it('undo do and undo again',function ()
+    it('undo do and undo again', function ()
     {
         this.stateStack.startTransaction('some action');
 
@@ -100,10 +100,9 @@ describe('state-stack advanced', () =>
 
         expect(this.state.value).toBe('initial');
     })
-    
-    it('undo', function()
-    {
 
+    it('undo', function ()
+    {
 
         this.stateStack.startTransaction('some unusedAction');
         this.stateStack.startTransaction('some action');
@@ -156,5 +155,23 @@ describe('state-stack advanced', () =>
         expect(this.stateStack.canUndo()).toBe(true);
         expect(this.stateStack.canRedo()).toBe(false);
         expect(this.state.value).toBe('another change');
+    });
+
+    it('grouping', function ()
+    {
+        let group = {};
+
+        this.stateStack.startTransaction("grouped change", group);
+
+        this.state.value = 1;
+
+        this.stateStack.startTransaction('grouped change', group);
+
+        this.state.value = 2;
+
+        this.stateStack.undo();
+
+        expect(this.state.value).toBe('initial');
+
     });
 })

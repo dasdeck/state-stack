@@ -1,4 +1,6 @@
-import {Server,config} from 'karma';
+import {Server, config} from 'karma';
+
+let watch = process.argv.indexOf('-w') >= 0;
 
 let server = new Server({
     basePath: __dirname,
@@ -7,8 +9,8 @@ let server = new Server({
 
     files: [{pattern: "./*.test.js"}],
     exclude: [],
-    preprocessors: {"./*.test.js": ['webpack','sourcemap']},
-    webpack:{
+    preprocessors: {"./*.test.js": ['webpack', 'sourcemap']},
+    webpack: {
         devtool: 'inline-source-map'
     },
 
@@ -19,12 +21,12 @@ let server = new Server({
 
     logLevel: config.LOG_INFO,
 
-    autoWatch: process.argv.indexOf('-w') >= 0,
+    autoWatch: watch,
 
     browsers: ['Chrome'],
 
+    singleRun: !watch,
 
-    singleRun: process.argv.indexOf('-w') <= 0,
     concurrency: Infinity
 });
 
