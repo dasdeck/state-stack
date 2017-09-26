@@ -53,4 +53,15 @@ history.undo();
 ```
 
 
+### todo
+#### (time traveller / 2.x)
+
+- [ ] rollup setup
+- [ ] Browser bin (artifact & git release & doc link)
+- [ ] multiple redos (preserve current interface)
+- [ ] snapshot that preserve history location
+- [ ] objects insead of text
+- [ ] translation format
+- [ ] group transactions on undo/redo
+- [ ] contin. deploy to npm
 
