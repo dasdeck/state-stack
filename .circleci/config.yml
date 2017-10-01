@@ -26,7 +26,7 @@ jobs:
     test:
         <<: *base
         steps:
-            - attach_workspace
+            - attach_workspace:
                 at: ~/state-stack
             - run:
                 name: npm test
@@ -34,7 +34,7 @@ jobs:
     coverage:
         <<: *base
         steps:
-            - attach_workspace
+            - attach_workspace:
                 at: ~/state-stack
             - run:
                 name: npm coverage
@@ -42,7 +42,7 @@ jobs:
     deploy:
         <<: *base
         steps:
-            - attach_workspace
+            - attach_workspace:
                 at: ~/state-stack
             - run:
                 name: npm publish
