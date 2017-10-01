@@ -63,7 +63,9 @@ workflows:
             - test:
                 requires:
                     - build
-            - coverage
+            - coverage:
+                requires:
+                    - build
             - deploy:
                 requires:
                     - test
