@@ -5,7 +5,6 @@
     "description": "Redux Reducer Composition Utilities",
     "author": "Jan 'JM' Manuel Schlieper",
     "structure": {
-        "readme": "intro.md",
         "summary": "toc.md"
     }
 }
