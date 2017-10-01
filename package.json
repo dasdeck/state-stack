@@ -10,7 +10,8 @@
     "coverage": "nyc npm test && nyc report --reporter=text-lcov | coveralls",
     "karma": "babel-node test/run.karma.js -w",
     "build": "rollup -c rollup.config.js && webpack",
-    "doc": "cp README.md docs/intro.md && jsdoc2md src/state-stack.js > docs/api.md && gitbook install && gitbook build && replace-in-file 'href=\"./\"' 'href=\"index.html\"' ./_book/*.html"
+    "doc": "cp README.md docs/intro.md && jsdoc2md src/state-stack.js > docs/api.md && gitbook install && gitbook build && npm run doc:replace",
+    "doc:replace":"replace-in-file '/href=\"./\"/g' 'href=\"index.html\"' ./_book/*.html --isRegex "
   },
   "repository": {
     "type": "git",
