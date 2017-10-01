@@ -1,5 +1,5 @@
 /*jshint esversion: 6 */
-import nodeExternals from 'webpack-node-externals';
+const nodeExternals = require('webpack-node-externals');
 
 const rules = [{
     test: /\.js$/,
