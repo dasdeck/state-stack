@@ -39,6 +39,17 @@ jobs:
             - run:
                 name: npm run coverage
                 command: npm run coverage
+    docs:
+        <<: *base
+        steps:
+            - attach_workspace:
+                at: ~/state-stack
+            - run:
+                name: npm run doc
+                command: npm run doc
+            - store_artifacts:
+                path: _book
+                destination: _book
     deploy:
         <<: *base
         steps:
@@ -49,12 +60,7 @@ jobs:
                 command: |
                     echo "//registry.npmjs.org/:_authToken=$NPM_AUTH_TOKEN" >> ~/.npmrc
                     npm publish
-            - run:
-                name: npm run doc
-                command: npm run doc
-            - store_artifacts:
-                path: _book
-                destination: _book
+            
 workflows:
     version: 2
     build-test-cov-deploy:
@@ -66,9 +72,14 @@ workflows:
             - coverage:
                 requires:
                     - build
+            - docs:
+                requires:
+                    - build
             - deploy:
                 filters:
                     branches:
                         only: master
                 requires:
                     - test
+                    - docs
+                    - coverage

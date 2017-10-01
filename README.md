@@ -20,7 +20,7 @@ for even simpler usage with Vue2
 
 # api
 
-[documentation](https://hook.io/dasdeck/getmanual/state-stack)
+[documentation](https://hook.io/dasdeck/getartifact/state-stack/index.html)
 [(JSDoc)](https://jsdoc.org)
 
 # example
