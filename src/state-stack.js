@@ -30,8 +30,8 @@ class StateStack extends EventEmitter {
 
     /**
      *
-     * @returns {boolean}
      * @private
+     * @returns {boolean}
      */
     _isDirty() {
         return !!(this.stack && !isEqual(this.stack.state, this.getState()));
@@ -39,8 +39,8 @@ class StateStack extends EventEmitter {
 
     /**
      *
-     * @returns {boolean}
      * @private
+     * @returns {boolean}
      */
     _hasNext() {
         return !!(this.stack && this.stack.next);
@@ -98,8 +98,7 @@ class StateStack extends EventEmitter {
     getUndoText() {
         if (this._isDirty()) {
             return this.stack.name;
-        }
-        else if (this._hasPrevious()) {
+        } else if (this._hasPrevious()) {
             return this.stack.prev.name;
         }
 

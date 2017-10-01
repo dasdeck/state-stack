@@ -1,7 +1,8 @@
 
 [![circleci-status](https://circleci.com/gh/dasdeck/state-stack/tree/develop.png?style=shield&circle-token=b9eb523df1ac2cba1124e96452aab43a4686d6ac
-)](https://circleci.com/gh/dasdeck/state-stack)(branch:develop)
-
+)](https://circleci.com/gh/dasdeck/state-stack)
+[![npm version](https://badge.fury.io/js/state-stack.svg)](https://badge.fury.io/js/state-stack)
+[![Coverage Status](https://coveralls.io/repos/github/dasdeck/state-stack/badge.svg)](https://coveralls.io/github/dasdeck/state-stack)
 # state-stack
 ## simple and fast undo/redo function for your web applications
 
