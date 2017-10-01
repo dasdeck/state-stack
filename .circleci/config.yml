@@ -62,19 +62,18 @@ jobs:
                 command: |
                     echo "//registry.npmjs.org/:_authToken=$NPM_AUTH_TOKEN" >> ~/.npmrc
                     npm publish
-            
 workflows:
     version: 2
     build-test-cov-deploy:
         jobs:
+            - docs:
+                requires:
+                    - build
             - build
             - test:
                 requires:
                     - build
             - coverage:
-                requires:
-                    - build
-            - docs:
                 requires:
                     - build
             - deploy:
