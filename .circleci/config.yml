@@ -37,8 +37,8 @@ jobs:
             - attach_workspace:
                 at: ~/state-stack
             - run:
-                name: npm coverage
-                command: npm coverage
+                name: npm run coverage
+                command: npm run coverage
     deploy:
         <<: *base
         steps:

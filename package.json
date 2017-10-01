@@ -1,6 +1,6 @@
 {
   "name": "state-stack",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "simple state stack for time travel operations",
   "main": "dist/state-stack.js",
   "module": "src/state-stack.js",
