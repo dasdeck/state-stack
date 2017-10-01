@@ -7,7 +7,7 @@ export default {
   input: 'src/state-stack.js',
   output: {
     file: 'dist/state-stack.js',
-    format: 'commonjs',
+    format: 'cjs',
     name: "StateStack"
   },
   external:['events','lodash'],
