@@ -3,6 +3,9 @@
 )](https://circleci.com/gh/dasdeck/state-stack)
 [![npm version](https://badge.fury.io/js/state-stack.svg)](https://badge.fury.io/js/state-stack)
 [![Coverage Status](https://coveralls.io/repos/github/dasdeck/state-stack/badge.svg)](https://coveralls.io/github/dasdeck/state-stack)
+[![npm](https://img.shields.io/npm/dt/state-stack.svg)](https://npmjs.org/package/state-stack)
+[![bitHound Dependencies](https://www.bithound.io/github/dasdeck/state-stack/badges/dependencies.svg)](https://www.bithound.io/github/dasdeck/state-stack/master/dependencies/npm)
+[![bitHound Dev Dependencies](https://www.bithound.io/github/dasdeck/state-stack/badges/devDependencies.svg)](https://www.bithound.io/github/dasdeck/state-stack/master/dependencies/npm)
 # state-stack
 ## simple and fast undo/redo function for your web applications
 
