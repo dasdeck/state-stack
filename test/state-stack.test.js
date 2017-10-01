@@ -1,6 +1,7 @@
 /* jshint esversion: 6 */
+/* eslint-env jasmine */
+
 import StateStack from '../src/state-stack'
-import { describe, it, expect, beforeEach } from 'jasmine'
 
 describe('state-stack simple tests', () => {
   it('set/get state stack', () => {
