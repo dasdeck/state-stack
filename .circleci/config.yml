@@ -23,7 +23,7 @@ jobs:
             - run:
                 name: npm publish
                 command: |
-                    echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> ~/.npmrc
+                    echo "//registry.npmjs.org/:_authToken=$NPM_AUTH_TOKEN" >> ~/.npmrc
                     npm publish
             - run:
                 name: npm run doc
