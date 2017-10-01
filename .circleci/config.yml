@@ -56,14 +56,14 @@ jobs:
                 path: _book
                 destination: _book
 workflows:
-version: 2
-default_workflow:
-    jobs:
-        - build
-        - test:
-            requires:
-                - build
-        - coverage
-        - deploy:
-            requires:
-                - test
+    version: 2
+    build-test-cov-deploy:
+        jobs:
+            - build
+            - test:
+                requires:
+                    - build
+            - coverage
+            - deploy:
+                requires:
+                    - test
