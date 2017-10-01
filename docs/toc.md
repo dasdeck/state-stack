@@ -1,3 +1,4 @@
 # Table of content
-* [Getting Started](start.md)
+
 * [API Reference](api.md)
+* [TODO/roadmap](todo.md)

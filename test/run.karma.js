@@ -1,33 +1,34 @@
-import {Server, config} from 'karma';
+/* jshint esversion: 6 */
+import { Server, config } from 'karma'
 
-let watch = process.argv.indexOf('-w') >= 0;
+let watch = process.argv.indexOf('-w') >= 0
 
 let server = new Server({
-    basePath: __dirname,
+  basePath: __dirname,
 
-    frameworks: ['jasmine'],
+  frameworks: ['jasmine'],
 
-    files: [{pattern: "./*.test.js"}],
-    exclude: [],
-    preprocessors: {"./*.test.js": ['webpack', 'sourcemap']},
-    webpack: {
-        devtool: 'inline-source-map'
-    },
+  files: [{ pattern: './*.test.js' }],
+  exclude: [],
+  preprocessors: { './*.test.js': ['webpack', 'sourcemap'] },
+  webpack: {
+    devtool: 'inline-source-map'
+  },
 
-    reporters: ['progress'],
-    port: 9876,
+  reporters: ['progress'],
+  port: 9876,
 
-    colors: true,
+  colors: true,
 
-    logLevel: config.LOG_INFO,
+  logLevel: config.LOG_INFO,
 
-    autoWatch: watch,
+  autoWatch: watch,
 
-    browsers: ['Chrome'],
+  browsers: ['Chrome'],
 
-    singleRun: !watch,
+  singleRun: !watch,
 
-    concurrency: Infinity
-});
+  concurrency: Infinity
+})
 
-server.start();
+server.start()

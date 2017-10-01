@@ -1,15 +1,17 @@
+# state-stack
 
 [![circleci-status](https://circleci.com/gh/dasdeck/state-stack/tree/develop.png?style=shield&circle-token=b9eb523df1ac2cba1124e96452aab43a4686d6ac
 )](https://circleci.com/gh/dasdeck/state-stack)
 [![npm version](https://badge.fury.io/js/state-stack.svg)](https://badge.fury.io/js/state-stack)
 [![Coverage Status](https://coveralls.io/repos/github/dasdeck/state-stack/badge.svg)](https://coveralls.io/github/dasdeck/state-stack)
 [![npm](https://img.shields.io/npm/dt/state-stack.svg)](https://npmjs.org/package/state-stack)
+[![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
+
 [![bitHound Dependencies](https://www.bithound.io/github/dasdeck/state-stack/badges/dependencies.svg)](https://www.bithound.io/github/dasdeck/state-stack/master/dependencies/npm)
 [![bitHound Dev Dependencies](https://www.bithound.io/github/dasdeck/state-stack/badges/devDependencies.svg)](https://www.bithound.io/github/dasdeck/state-stack/master/dependencies/npm)
 [![bitHound Overall Score](https://www.bithound.io/github/dasdeck/state-stack/badges/score.svg)](https://www.bithound.io/github/dasdeck/state-stack)
 [![bitHound Code](https://www.bithound.io/github/dasdeck/state-stack/badges/code.svg)](https://www.bithound.io/github/dasdeck/state-stack)
 
-# state-stack
 ## simple and fast undo/redo function for your web applications
 
 the state-stack offers a simple undo/redo interface to store and restore application states.
@@ -18,20 +20,15 @@ and is very easy to implement.
 Since this idea has been developed around Vue2 and Vuex there are specific packages
 for even simpler usage with Vue2
 
-[linktest](https://127.0.0.1:8008)
+## install
 
-# download 
+npm i state-stack
 
-...
+## docs
 
-# api
+[api & more](https://hook.io/dasdeck/getartifact/state-stack/index.html)
 
-[documentation](https://hook.io/dasdeck/getartifact/state-stack/index.html)
-[(JSDoc)](https://jsdoc.org)
-
-# example
-
-
+## quick example
 
 ```javascript
 
@@ -60,17 +57,3 @@ history.undo();
 // myState.value === 'initial value'
 
 ```
-
-
-### todo
-#### (time traveller / 2.x)
-
-- [ ] rollup setup
-- [ ] Browser bin (artifact & git release & doc link)
-- [ ] multiple redos (preserve current interface)
-- [ ] snapshot that preserve history location
-- [ ] objects insead of text
-- [ ] translation format
-- [ ] group transactions on undo/redo
-- [ ] contin. deploy to npm
-
