@@ -57,7 +57,7 @@ jobs:
                 destination: _book
 workflows:
 version: 2
-default-workgflow:
+default_workflow:
     jobs:
         - build
         - test:
