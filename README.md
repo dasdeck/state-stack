@@ -12,7 +12,7 @@ and is very easy to implement.
 Since this idea has been developed around Vue2 and Vuex there are specific packages
 for even simpler usage with Vue2
 
-[linktest](https://localhost:3000)
+[linktest](http://localhost:3000)
 
 # download 
 
