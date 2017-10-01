@@ -22,7 +22,9 @@ for even simpler usage with Vue2
 
 ## install
 
-npm i state-stack
+```shell
+npm i state-stack --save
+```
 
 ## docs
 
