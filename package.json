@@ -24,6 +24,7 @@
     "babel-preset-env": "^1.6.0",
     "gitbook-cli": "^2.3.2",
     "jasmine": "^2.8.0",
+    "jasmine-core": "^2.8.0",
     "jsdoc": "^3.5.5",
     "jsdoc-to-markdown": "^3.0.0",
     "karma": "^1.7.1",
