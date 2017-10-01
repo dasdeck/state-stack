@@ -1,29 +1,33 @@
 version: 2
 jobs:
-  build:
-    working_directory: ~/state-stack
-    docker:
-      - image: circleci/node:8-browsers
-    steps:
-      - checkout
-      - restore_cache:
-          key: dependency-cache-{{ checksum "package.json" }}
-      - run:
-          name: npm install
-          command: npm install
-      - save_cache:
-          key: dependency-cache-{{ checksum "package.json" }}
-          paths:
-            - node_modules
-      - run:
-          name: npm test
-          command: npm test
-      - run:
-          name: npm run build
-          command: npm run build
-      - run:
-          name: npm run doc
-          command: npm run doc
-      - store_artifacts:
-          path: doc
-          destination: doc
+    build:
+        working_directory: ~/state-stack
+        docker:
+            - image: circleci/node:8-browsers
+        steps:
+            - checkout
+            - restore_cache:
+                key: dependency-cache-{{ checksum "package.json" }}
+            - run:
+                name: npm install
+                command: npm install
+            - save_cache:
+                key: dependency-cache-{{ checksum "package.json" }}
+                paths: node_modules
+            - run:
+                name: npm run build
+                command: npm run build
+            - run:
+                name: npm test
+                command: npm test
+            - run:
+                name: npm publish
+                command: |
+                    echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> ~/.npmrc
+                    npm publish
+            - run:
+                name: npm run doc
+                command: npm run doc
+            - store_artifacts:
+                path: _book
+                destination: _book

@@ -1,0 +1,11 @@
+{
+    "gitbook": "3.2.2",
+    "root": "./docs",
+    "title": "state-stack",
+    "description": "Redux Reducer Composition Utilities",
+    "author": "Jan 'JM' Manuel Schlieper",
+    "structure": {
+        "readme": "intro.md",
+        "summary": "toc.md"
+    }
+}

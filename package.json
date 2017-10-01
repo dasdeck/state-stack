@@ -1,13 +1,19 @@
 {
   "name": "state-stack",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "simple state stack for time travel operations",
   "main": "dist/state-stack.js",
+  "module": "src/state-stack.js",
+  "browser": "dist/state-stack.browser.js",
   "scripts": {
     "test": "babel-node test/run.jasmine.js && babel-node test/run.karma.js",
     "karma": "babel-node test/run.karma.js -w",
-    "build": "webpack",
-    "doc":"jsdoc  src/state-stack.js --destination doc"
+    "build": "rollup -c rollup.config.js && webpack",
+    "doc": "cp README.md docs/intro.md && jsdoc2md src/state-stack.js > docs/api.md && gitbook install && gitbook build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dasdeck/state-stack.git"
   },
   "author": "Jan \"JM\" Manuel Schlieper",
   "license": "MIT",
@@ -17,13 +23,19 @@
     "babel-preset-env": "^1.6.0",
     "jasmine": "^2.8.0",
     "jsdoc": "^3.5.5",
+    "jsdoc-to-markdown": "^3.0.0",
     "karma": "^1.7.1",
     "karma-chrome-launcher": "^2.2.0",
     "karma-jasmine": "^1.1.0",
     "karma-sourcemap-loader": "^0.3.7",
     "karma-webpack": "^2.0.4",
+    "rollup": "^0.50.0",
+    "rollup-plugin-buble": "^0.16.0",
+    "rollup-plugin-commonjs": "^8.2.1",
+    "rollup-plugin-node-resolve": "^3.0.0",
     "webpack": "^3.6.0",
-    "webpack-node-externals": "^1.6.0"
+    "webpack-node-externals": "^1.6.0",
+    "gitbook-cli": "^2.3.2"
   },
   "dependencies": {
     "events": "^1.1.1",

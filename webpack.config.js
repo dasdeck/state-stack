@@ -1,4 +1,5 @@
-const nodeExternals = require('webpack-node-externals');
+/*jshint esversion: 6 */
+import nodeExternals from 'webpack-node-externals';
 
 const rules = [{
     test: /\.js$/,
@@ -20,21 +21,6 @@ const browser = {
     module: {
         rules: rules
     }
-}
+};
 
-const common = {
-    entry: {
-        'state-stack': './src/state-stack.js'
-    },
-    output: {
-        filename: './dist/state-stack.js',
-        libraryTarget: "umd"
-    },
-    externals: [nodeExternals()],
-    devtool: 'source-map',
-    module: {
-        rules: rules
-    }
-}
-
-module.exports = [browser, common]
+module.exports = [browser];

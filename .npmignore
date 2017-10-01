@@ -1,0 +1,5 @@
+_book
+.circleci
+.idea
+.vscode
+docs

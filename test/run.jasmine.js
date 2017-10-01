@@ -1,3 +1,5 @@
+/*jshint esversion: 6*/
+
 import Jasmine from 'jasmine';
 import glob from 'glob';
 import path from 'path';
