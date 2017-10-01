@@ -1,4 +1,4 @@
-base:&base
+base: &base
     working_directory: ~/state-stack
     docker:
         - image: circleci/node:8-browsers
