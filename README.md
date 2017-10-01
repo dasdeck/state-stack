@@ -6,6 +6,9 @@
 [![npm](https://img.shields.io/npm/dt/state-stack.svg)](https://npmjs.org/package/state-stack)
 [![bitHound Dependencies](https://www.bithound.io/github/dasdeck/state-stack/badges/dependencies.svg)](https://www.bithound.io/github/dasdeck/state-stack/master/dependencies/npm)
 [![bitHound Dev Dependencies](https://www.bithound.io/github/dasdeck/state-stack/badges/devDependencies.svg)](https://www.bithound.io/github/dasdeck/state-stack/master/dependencies/npm)
+[![bitHound Overall Score](https://www.bithound.io/github/dasdeck/state-stack/badges/score.svg)](https://www.bithound.io/github/dasdeck/state-stack)
+[![bitHound Code](https://www.bithound.io/github/dasdeck/state-stack/badges/code.svg)](https://www.bithound.io/github/dasdeck/state-stack)
+
 # state-stack
 ## simple and fast undo/redo function for your web applications
 
