@@ -1,5 +1,5 @@
 {
-  "name": "state-stack",
+  "name": "vue-state-stack",
   "version": "1.0.0",
   "description": "simple state stack for time travel operations",
   "main": "dist/state-stack.js",
@@ -41,11 +41,8 @@
     "rollup-plugin-buble": "^0.16.0",
     "rollup-plugin-commonjs": "^8.2.1",
     "rollup-plugin-node-resolve": "^3.0.0",
-    "webpack": "^3.6.0",
-    "standard": "^10.0.3"
-  },
-  "dependencies": {
-    "events": "^1.1.1",
-    "lodash": "^4.17.4"
+    "standard": "^10.0.3",
+    "vue": "^2.5.2",
+    "webpack": "^3.6.0"
   }
 }

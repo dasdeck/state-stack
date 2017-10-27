@@ -1,161 +1,172 @@
 /* jshint esversion: 6 */
 
-import { EventEmitter } from 'events'
-import { cloneDeep, isEqual } from 'lodash'
+function cloneDeep(data) {
+  return data ? JSON.parse(JSON.stringify(data)) : data;
+}
 
+function isEqual(a,b) {
+  return JSON.stringify(a) === JSON.stringify(b);
+}
 /**
  * state based undo/redo class
  * @class
  *
  */
-class StateStack extends EventEmitter {
-  /**
-   *
-   * @param {object} [state] - optionally pass the state to manage on construction
-   */
-  constructor (state) {
-    super()
-    this.state = state || {}
-    this.stack = null
-  }
+export default {
 
-  /**
-   * @private
-   * @returns {boolean}
-   */
-  _hasPrevious () {
-    return !!(this.stack && this.stack.prev)
-  }
+	props: {
+		state: {
+			type: Object,
+			default () { return {} }
+		}
+	},
+	/**
+	 *
+	 * @param {object} [state] - optionally pass the state to manage on construction
+	 */
+	data() {
+		// this.state = state || {}
+		return { stack: null } //this.stack = null
+	},
 
-  /**
-   *
-   * @private
-   * @returns {boolean}
-   */
-  _isDirty () {
-    return !!(this.stack && !isEqual(this.stack.state, this.getState()))
-  }
+	methods: {
 
-  /**
-   *
-   * @private
-   * @returns {boolean}
-   */
-  _hasNext () {
-    return !!(this.stack && this.stack.next)
-  }
+		/**
+		 * @private
+		 * @returns {boolean}
+		 */
+		_hasPrevious() {
+			return !!(this.stack && this.stack.prev)
+		},
 
-  /**
-   * gets the current managed state
-   * @returns {object}
-   */
-  getState () {
-    return this.state
-  }
+		/**
+		 *
+		 * @private
+		 * @returns {boolean}
+		 */
+		_isDirty() {
+			return !!(this.stack && !isEqual(this.stack.state, this.getState()))
+		},
 
-  /**
-   *
-   * @param state
-   */
-  setState (state) {
-    this.state = state
-    this.emit('changed')
-  }
+		/**
+		 *
+		 * @private
+		 * @returns {boolean}
+		 */
+		_hasNext() {
+			return !!(this.stack && this.stack.next)
+		},
 
-  /**
-   *
-   * @returns {boolean}
-   */
-  canRedo () {
-    return !!(this.stack && this.stack.next && !this._isDirty())
-  }
+		/**
+		 * gets the current managed state
+		 * @returns {object}
+		 */
+		getState() {
+			return this.state
+		},
 
-  /**
-   *
-   * @returns {boolean}
-   */
-  canUndo () {
-    return !!(this._isDirty() || this._hasPrevious())
-  }
+		/**
+		 *
+		 * @param state
+		 */
+		setState(state) {
+			this.state = state
+			this.$emit('changed')
+		},
 
-  /**
-   * returns text of redoable action
-   * @returns {string}
-   */
-  getRedoText () {
-    if (this._hasNext()) {
-      return this.stack.name
-    }
-  }
+		/**
+		 *
+		 * @returns {boolean}
+		 */
+		canRedo() {
+			return !!(this.stack && this.stack.next && !this._isDirty())
+		},
 
-  /**
-   * returns text of undoable action
-   * @returns {string}
-   */
-  getUndoText () {
-    if (this._isDirty()) {
-      return this.stack.name
-    } else if (this._hasPrevious()) {
-      return this.stack.prev.name
-    }
-  }
+		/**
+		 *
+		 * @returns {boolean}
+		 */
+		canUndo() {
+			return !!(this._isDirty() || this._hasPrevious())
+		},
 
-  /**
-   * undo the current transaction
-   */
-  undo () {
-    if (!this._isDirty() && this._hasPrevious()) {
-      this.stack = this.stack.prev
-    }
-    if (!this.stack.next) {
-      this.stack.next = { prev: this.stack }
-    }
+		/**
+		 * returns text of redoable action
+		 * @returns {string}
+		 */
+		getRedoText() {
+			if (this._hasNext()) {
+				return this.stack.name
+			}
+		},
 
-    this.stack.next.state = cloneDeep(this.getState())
+		/**
+		 * returns text of undoable action
+		 * @returns {string}
+		 */
+		getUndoText() {
+			if (this._isDirty()) {
+				return this.stack.name
+			} else if (this._hasPrevious()) {
+				return this.stack.prev.name
+			}
+		},
 
-    this.setState(cloneDeep(this.stack.state))
-  }
+		/**
+		 * undo the current transaction
+		 */
+		undo() {
+			if (!this._isDirty() && this._hasPrevious()) {
+				this.stack = this.stack.prev
+			}
+			if (!this.stack.next) {
+				this.stack.next = { prev: this.stack }
+			}
 
-  /**
-   * redo last undone transaction
-   * is not save to call if canUdno returns false
-   */
-  redo () {
-    this.stack = this.stack.next
-    this.setState(cloneDeep(this.stack.state))
-  }
+			this.stack.next.state = cloneDeep(this.getState())
 
-  /**
-   *
-   * @param {string} [name] - string to show in history / idetify change
-   * @param {mixed} [group] - optional group to merge
-   * consecutive chagnes to one transaction
-   */
-  startTransaction (name, group) {
-    let nextTransaction
+			this.setState(cloneDeep(this.stack.state))
+		},
 
-    if (this.stack) {
-      if ((group && this.stack.group === group) || !this._isDirty()) {
-        nextTransaction = this.stack
-      }
-    }
+		/**
+		 * redo last undone transaction
+		 * is not save to call if canUdno returns false
+		 */
+		redo() {
+			this.stack = this.stack.next
+			this.setState(cloneDeep(this.stack.state))
+		},
 
-    if (!nextTransaction) {
-      nextTransaction = {
-        prev: this.stack
-      }
+		/**
+		 *
+		 * @param {string} [name] - string to show in history / idetify change
+		 * @param {mixed} [group] - optional group to merge
+		 * consecutive chagnes to one transaction
+		 */
+		startTransaction(name, group) {
+			let nextTransaction
 
-      if (this.stack) {
-        this.stack.next = nextTransaction
-      }
+			if (this.stack) {
+				if ((group && this.stack.group === group) || !this._isDirty()) {
+					nextTransaction = this.stack
+				}
+			}
 
-      this.stack = nextTransaction
-      nextTransaction.state = cloneDeep(this.getState())
-    }
+			if (!nextTransaction) {
+				nextTransaction = {
+					prev: this.stack
+				}
 
-    nextTransaction.name = name
-    nextTransaction.group = group
-  }
+				if (this.stack) {
+					this.stack.next = nextTransaction
+				}
+
+				this.stack = nextTransaction
+				nextTransaction.state = cloneDeep(this.getState())
+			}
+
+			nextTransaction.name = name
+			nextTransaction.group = group
+		}
+	}
 }
-
-export default StateStack

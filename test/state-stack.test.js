@@ -1,7 +1,11 @@
 /* jshint esversion: 6 */
 /* eslint-env jasmine */
 
-import StateStack from '../src/state-stack'
+import StateStackDefinition from '../src/state-stack';
+import Vue from 'vue';
+
+
+const StateStack = Vue.extend(StateStackDefinition);
 
 describe('state-stack simple tests', () => {
   it('set/get state stack', () => {
@@ -12,15 +16,15 @@ describe('state-stack simple tests', () => {
     expect(stateStack.getState().a).toBe('b')
   })
 
-  it('can sends change messages', (done) => {
+  it('can send change messages', (done) => {
     let stateStack = new StateStack()
 
-    stateStack.on('change', (stack) => {
+    stateStack.$on('change', (stack) => {
       expect(stack).toBe(stateStack)
       done()
     })
 
-    stateStack.emit('change', stateStack)
+    stateStack.$emit('change', stateStack)
   })
 
   it('can not undo or redor anything', () => {
@@ -37,7 +41,7 @@ describe('state-stack advanced', () => {
   beforeEach(function () {
     this.state = { value: 'initial' }
     this.stateStack = new StateStack()
-    this.stateStack.on('changed', () => {
+    this.stateStack.$on('changed', () => {
       this.state = this.stateStack.getState()
     })
     this.stateStack.setState(this.state)
