@@ -6,9 +6,14 @@
   "module": "src/state-stack.js",
   "browser": "dist/state-stack.browser.js",
   "scripts": {
-    "test": "babel-node test/run.jasmine.js && babel-node test/run.karma.js",
+    "legacyVue": "npm i vue@^1.0.28",
+    "latestVue": "npm i vue@latest",
+    "test": "npm run test:run",
+    "test:versions": "npm run legacyVue && npm run test:run && npm run latestVue && npm run test:run",
+    "test:latest": "npm run latestVue && npm run test:run",
+    "test:run": "babel-node test/run.jasmine.js && babel-node test/run.karma.js",
     "coverage": "nyc npm test && nyc report --reporter=text-lcov | coveralls",
-    "karma": "babel-node test/run.karma.js -w",
+    "karma": "node -r babel-register test/run.karma.js -w",
     "build": "rollup -c rollup.config.js && webpack",
     "doc": "cp README.md docs/intro.md && jsdoc2md src/state-stack.js > docs/api.md && gitbook install && gitbook build && npm run doc:replace",
     "doc:replace": "replace-in-file '/href=\"./\"/g' 'href=\"index.html\"' ./_book/*.html --isRegex "
@@ -42,7 +47,7 @@
     "rollup-plugin-commonjs": "^8.2.1",
     "rollup-plugin-node-resolve": "^3.0.0",
     "standard": "^10.0.3",
-    "vue": "^2.5.2",
+    "vue": "^2.5.3",
     "webpack": "^3.6.0"
   }
 }
