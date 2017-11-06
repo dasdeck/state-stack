@@ -1,9 +1,11 @@
 /* jshint esversion: 6 */
 /* eslint-env jasmine */
 
-import StateStack from '../src/state-stack';
+import StateStackDefinition from '../src/state-stack-comp';
 import Vue from 'vue';
 
+// 
+const StateStack = Vue.extend(StateStackDefinition);
 
 describe('state-stack simple tests', () => {
   it('set/get state stack', () => {
@@ -47,7 +49,12 @@ return () => {
       this.state = { value: 'initial' }
       if(params.propsSets) {
 
-        this.stateStack = new StateStack(this.state)
+        const args = {propsData: {value: this.state}};
+        if(Vue.version < 2) {
+          args.el = 'body'; //provide dom for vue 1.x compat
+        }
+
+        this.stateStack = new StateStack(args)
 
       }
       else {
